@@ -5,7 +5,9 @@ const Header = () => {
     <header className="fixed left-0 right-0 backdrop-blur-sm bg-base-100/80">
       <div className="container mx-auto max-w-screen-lg text-5xl px-4 lg:px-0">
         <div className="flex flex-row justify-between items-center h-20">
-          <img src="images/logo.svg" alt="Gramatika" />
+          <a href="/">
+            <img src="images/logo.svg" alt="Gramatika" />
+          </a>
           <div className="flex flex-row space-x-4">
             <div className="flex flex-row">
               <div className="form-control">
