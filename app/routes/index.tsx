@@ -36,7 +36,7 @@ export default function Index() {
           </div>
           <div className="flex flex-row justify-center lg:justify-start">
             <a
-              href="https://twitter.com/sonnylazuardi/status/1476510329471258624?s=20"
+              href="https://play.google.com/store/apps/details?id=com.sonnylab.gramatika"
               className="border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-tl-2xl rounded-tr-2xl rounded-br-2xl font-semibold"
             >
               <img
@@ -44,8 +44,8 @@ export default function Index() {
                 className="mr-4"
                 role="presentation"
               />
-              Aplikasi Ponsel dalam
-              <br /> Pengembangan{" "}
+              Aplikasi Android
+              <br /> di Play Store{" "}
               <img
                 src="images/arrow_black.svg"
                 className="ml-4"
