@@ -8,10 +8,6 @@ import {
   ScrollRestoration,
 } from "remix";
 import type { MetaFunction } from "remix";
-import splitbee from "@splitbee/web";
-
-splitbee.init();
-
 import styles from "./tailwind.css";
 
 export const meta: MetaFunction = () => {
