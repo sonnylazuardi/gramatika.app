@@ -2,11 +2,15 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="fixed left-0 right-0 backdrop-blur-sm bg-base-100/80">
+    <header
+      className="fixed left-0 right-0 backdrop-blur-sm bg-base-100/80"
+      style={{ zIndex: 9999999 }}
+    >
       <div className="container mx-auto max-w-screen-lg text-5xl px-4 lg:px-0">
         <div className="flex flex-row justify-between items-center h-20">
-          <a href="/">
-            <img src="images/logo.svg" alt="Gramatika" />
+          <a href="/" className="text-2xl font-semibold flex flex-row">
+            <img src="images/logo.svg" alt="Gramatika" className="mr-2" />{" "}
+            Gramatika
           </a>
           <div className="flex flex-row space-x-4">
             <div className="flex flex-row">
@@ -16,7 +20,7 @@ const Header = () => {
                 </label>
                 <input
                   type="checkbox"
-                  defaultChecked={true}
+                  defaultChecked={false}
                   id="color-toggle"
                   name="color-toggle"
                   className="toggle"
@@ -39,13 +43,13 @@ const Header = () => {
             </div>
             <a
               href="https://twitter.com/sonnylazuardi"
-              className="text-sm text-black lg:text-base flex flex-row items-end font-semibold"
+              className="text-sm lg:text-base flex flex-row items-end font-semibold"
             >
               <span className="sr-only md:not-sr-only md:inline-block">
-                @sonnylazuardi
+                Twitter
               </span>{" "}
               <img
-                src="images/arrow_black.svg"
+                src="images/arrow_white.svg"
                 className="mb-1 ml-1"
                 role="presentation"
               />
