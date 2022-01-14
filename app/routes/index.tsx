@@ -8,6 +8,7 @@ import Header from "../components/Header";
 //@ts-ignore
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import Star from "~/components/Star";
+import splitbee from "@splitbee/web";
 
 export default function Index() {
   const { scrollYProgress } = useViewportScroll();
@@ -57,6 +58,9 @@ export default function Index() {
           <a
             href="https://chrome.google.com/webstore/detail/gramatika-bahasa-indonesi/hhodeijkemcdbelkfdhglgmgpmgkfekk?hl=id"
             className="bg-black text-white text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+            onClick={() => {
+              splitbee.track("Chrome");
+            }}
           >
             <img
               src="images/chrome_logo.png"
@@ -74,6 +78,9 @@ export default function Index() {
           <a
             href="https://addons.mozilla.org/en-GB/firefox/addon/gramatika/"
             className="border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+            onClick={() => {
+              splitbee.track("Firefox");
+            }}
           >
             <img
               src="images/firefox_logo.svg"
@@ -91,6 +98,9 @@ export default function Index() {
           <a
             href="https://play.google.com/store/apps/details?id=com.sonnylab.gramatika"
             className="border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+            onClick={() => {
+              splitbee.track("Android");
+            }}
           >
             <img
               src="images/android_logo.png"
