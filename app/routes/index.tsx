@@ -9,6 +9,15 @@ import Header from "../components/Header";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import Star from "~/components/Star";
 
+const variants = {
+  rest: {
+    rotate: 0,
+  },
+  hover: {
+    rotate: 45,
+  },
+};
+
 export default function Index() {
   const { scrollYProgress } = useViewportScroll();
   const translate = useTransform(scrollYProgress, [0, 0.9], [100, -20]);
@@ -54,63 +63,60 @@ export default function Index() {
         </div>
 
         <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-6">
-          <a
+          <motion.a
+            whileHover="hover"
             href="https://chrome.google.com/webstore/detail/gramatika-bahasa-indonesi/hhodeijkemcdbelkfdhglgmgpmgkfekk?hl=id"
             className="bg-black text-white text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
             data-splitbee-event="Chrome"
             target="_blank"
           >
-            <img
-              src="images/chrome_logo.png"
-              className="mr-4"
-              role="presentation"
-            />
+            <img src="images/chrome_logo.png" className="mr-4" />
             Pasang Pengaya di
             <br /> Chrome Webstore{" "}
-            <img
-              src="images/arrow_white.svg"
-              className="ml-4"
-              role="presentation"
-            />
-          </a>
-          <a
+            <motion.div
+              className="flex justify-center items-center ml-4"
+              style={{ width: 40, height: 40 }}
+              variants={variants}
+            >
+              <img src="images/arrow_white.svg" />
+            </motion.div>
+          </motion.a>
+          <motion.a
+            whileHover="hover"
             href="https://addons.mozilla.org/en-GB/firefox/addon/gramatika/"
             className="border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
             data-splitbee-event="Firefox"
             target="_blank"
           >
-            <img
-              src="images/firefox_logo.svg"
-              className="mr-4"
-              role="presentation"
-            />
+            <img src="images/firefox_logo.svg" className="mr-4" />
             Pasang Pengaya
             <br /> di Firefox{" "}
-            <img
-              src="images/arrow_white.svg"
-              className="ml-4"
-              role="presentation"
-            />
-          </a>
-          <a
+            <motion.div
+              className="flex justify-center items-center ml-4"
+              style={{ width: 40, height: 40 }}
+              variants={variants}
+            >
+              <img src="images/arrow_white.svg" />
+            </motion.div>
+          </motion.a>
+          <motion.a
+            whileHover="hover"
             href="https://play.google.com/store/apps/details?id=com.sonnylab.gramatika"
             className="border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
             data-splitbee-event="Android"
             target="_blank"
           >
-            <img
-              src="images/android_logo.png"
-              className="mr-4"
-              role="presentation"
-            />
+            <img src="images/android_logo.png" className="mr-4" />
             Aplikasi Android
             <br /> di Play Store{" "}
-            <img
-              src="images/arrow_white.svg"
-              className="ml-4"
-              role="presentation"
-            />
-          </a>
+            <motion.div
+              className="flex justify-center items-center ml-4"
+              style={{ width: 40, height: 40 }}
+              variants={variants}
+            >
+              <img src="images/arrow_white.svg" />
+            </motion.div>
+          </motion.a>
         </div>
 
         <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-6 relative">
