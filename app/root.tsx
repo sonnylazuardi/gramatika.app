@@ -28,6 +28,7 @@ export default function App() {
         <Meta />
         <link rel="stylesheet" href="css/general-sans.css" />
         <Links />
+        <script async src="https://cdn.splitbee.io/sb.js"></script>
       </head>
       <body>
         <Outlet />
