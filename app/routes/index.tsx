@@ -190,7 +190,7 @@ export default function Index() {
             />
           </div>
           <div className="bg-base-200 h-96 flex flex-col justify-center items-center rounded-2xl mb-6 overflow-hidden">
-            <h2 className="text-3xl font-semibold mb-2">Rating 4.94/5</h2>
+            <h2 className="text-3xl font-semibold mb-2">Rating 4.95/5</h2>
             <div className="mb-2">
               <Star />
               <Star />
@@ -198,7 +198,7 @@ export default function Index() {
               <Star />
               <Star />
             </div>
-            <p className="text-base">850+ Pengguna</p>
+            <p className="text-base">1000+ Pengguna</p>
           </div>
         </div>
         <div className="text-sm text-center">
