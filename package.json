@@ -5,7 +5,7 @@
   "license": "",
   "scripts": {
     "build": "npm run build:css && remix build",
-    "build:css": "tailwindcss -o ./app/tailwind.css",
+    "build:css": "tailwindcss -m -o ./app/tailwind.css",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
     "dev:css": "tailwindcss -o ./app/tailwind.css --watch",
     "postinstall": "remix setup node"
@@ -15,12 +15,15 @@
     "@remix-run/serve": "^1.1.1",
     "@remix-run/vercel": "^1.1.1",
     "@splitbee/web": "^0.3.0",
+    "akarata": "^0.2.1",
     "daisyui": "^1.20.1",
     "framer-motion": "^5.6.0",
+    "fuse.js": "^6.6.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-twitter-embed": "^3.0.3",
-    "remix": "^1.1.1"
+    "remix": "^1.1.1",
+    "use-editable": "^2.3.3"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.1.1",
