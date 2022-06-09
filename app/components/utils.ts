@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  isSafari,
-  isMobileSafari,
-  isSamsungBrowser,
-  isAndroid,
-} from "react-device-detect";
+import { isSafari, isMobile } from "react-device-detect";
 
 export function useDebounce(value: any, delay: number) {
   const [debouncedValue, setDebouncedValue] = React.useState(value);
@@ -30,7 +25,7 @@ export const usePrevious = <T extends unknown>(value: T): T | undefined => {
 };
 
 export const formatText = (text: string) => {
-  if (isSafari || isMobileSafari || isAndroid || isSamsungBrowser) {
+  if (isSafari || isMobile) {
     return text.replace(/[\w\-']*/gi, (m) => `¦${m}`).split(/¦/g);
   } else {
     return text.split(/(?=[\s.,:!;?()[\]"])|(?<=[\s.,:!;?()[\]"])/);
