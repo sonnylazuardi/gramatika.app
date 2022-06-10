@@ -2,6 +2,8 @@
 
 Gramatika web helps you to check spelling and typo in Bahasa Indonesia
 
+![gramatika](gramatikaweb.png)
+
 ## Development
 
 To run the app locally, make sure your project's local dependencies are installed:
