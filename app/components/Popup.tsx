@@ -185,6 +185,8 @@ const Popup = () => {
             onConfirm={() => {
               if (!kbbiMode) {
                 const id = currentCorrection.id;
+                setPopupState(PopupState.loading)
+
                 setText(
                   formatText(text)
                     .map((v, i) => {
@@ -196,10 +198,14 @@ const Popup = () => {
                     .join("")
                 );
 
-                (editorRef.current as any).focus();
+                // setTimeout(() => {
+                //   setPopupState(PopupState.fixing)
+                // })
                 setCorrections((c) => {
                   const val = c.filter((v) => v.id !== id);
-                  if (!val.length) setPopupState(PopupState.finished);
+                  if (!val.length) {
+                    setTimeout(() => setPopupState(PopupState.finished), 1000)
+                  }
                   return val;
                 });
               } else {
