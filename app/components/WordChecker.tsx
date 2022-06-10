@@ -31,7 +31,7 @@ const WordChecker = ({
   };
   return (
     <span
-      style={{ pointerEvents: 'auto' }}
+      style={{ pointerEvents: error && !ignored ? 'fill' : 'none' }}
       className={active ? "active" : error && !ignored ? "error" : ""}
       onClick={() => handleCheck()}
       onMouseDown={() => handleCheck()}

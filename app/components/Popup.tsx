@@ -25,25 +25,29 @@ const Popup = () => {
 
   const [ignoredIds, setIgnoredIds] = React.useState<number[]>([]);
   const editorRef = React.useRef(null);
+  const editorRefShadow = React.useRef(null);
 
   useEditable(
     editorRef,
     React.useCallback(
       (value) => {
-        if (value.trim() !== "") {
-          setPopupState(PopupState.loading);
-        }
+        setPopupState(PopupState.loading);
         setText(value);
       },
       [setText]
     )
   );
 
-  // React.useEffect(() => {
-  //   if (editorRef.current) {
-  //     (editorRef.current as any).focus();
-  //   }
-  // }, []);
+  useEditable(
+    editorRefShadow,
+    (value) => { console.log(value) }, { disabled: true }
+  );
+
+  React.useEffect(() => {
+    if (editorRef.current) {
+      (editorRef.current as any).focus();
+    }
+  }, []);
 
   const prevSearch = usePrevious(debouncedSearchText);
 
@@ -118,22 +122,18 @@ const Popup = () => {
       <div className="flex flex-1 flex-col justify-start items-start p-4 max-w-lg mx-auto">
         <div
           style={{ height: 400 }}
-          className={`bg-base-200 relative overflow-y-auto overflow-x-hidden w-full rounded-md ${kbbiMode ? "kbbi" : ""
+          className={`bg-base-200 relative overflow-y-auto overflow-x-hidden scrollbar-hide w-full rounded-md ${kbbiMode ? "kbbi" : ""
             }`}
         >
-          <textarea value={text} placeholder="Tulis sesuatu di sini..." style={{ minHeight: 400, whiteSpace: "pre-wrap" }} className="editor w-full textarea bg-base-200 rounded-md" onChange={(e) => {
-            setPopupState(PopupState.loading);
-            setText(e.target.value)
-          }}></textarea>
+          <div ref={editorRef} tabIndex={0} placeholder="Tulis sesuatu di sini..." style={{ minHeight: 400, whiteSpace: "pre-wrap" }} className={"editor w-full textarea bg-base-200 rounded-md " + (text.trim() === "" && "empty")}>{text}</div>
           <div
-            ref={editorRef}
-            tabIndex={0}
-            style={{ minHeight: 400, whiteSpace: "pre-wrap", opacity: popupState === PopupState.loading ? 0 : 0.7, position: 'absolute', top: 0, pointerEvents: 'none' }}
+            style={{ minHeight: 400, whiteSpace: "pre-wrap", opacity: popupState === PopupState.loading ? 0 : 0.6, position: 'absolute', top: 0, pointerEvents: 'none' }}
             className={
-              "editor w-full textarea bg-base-200 rounded-md " +
+              "editor w-full textarea bg-base-200 rounded-md select-none " +
               (text.trim() === "" && "empty")
             }
             placeholder="Tulis sesuatu di sini..."
+            ref={editorRefShadow}
           >
             {formatText(debouncedSearchText).map((content, i) => {
               const error = corrections.some((v) => v.id === i);
@@ -195,6 +195,8 @@ const Popup = () => {
                     })
                     .join("")
                 );
+
+                (editorRef.current as any).focus();
                 setCorrections((c) => {
                   const val = c.filter((v) => v.id !== id);
                   if (!val.length) setPopupState(PopupState.finished);
@@ -268,7 +270,7 @@ const Popup = () => {
         {popupState === PopupState.finished ? (
           <div
             className="card text-left shadow-2xl w-full"
-            style={{ height: 402 }}
+            style={{ height: 182 }}
           >
             <div className="card-body p-4">
               <h2 className="card-title">

@@ -87,7 +87,7 @@ const CardKateglo = ({
           </h2>
         )}
 
-        <div className="w-full mb-10 overflow-y-auto" style={{ height: 74 }}>
+        <div className="w-full mb-10 overflow-y-auto scrollbar-hide" style={{ height: 74 }}>
           {description !== "" ? (
             <div dangerouslySetInnerHTML={{ __html: description }} />
           ) : (

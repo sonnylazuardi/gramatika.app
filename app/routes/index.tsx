@@ -8,6 +8,7 @@ import Header from "../components/Header";
 //@ts-ignore
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import Star from "~/components/Star";
+import React from "react";
 
 const variants = {
   rest: {
@@ -31,6 +32,10 @@ export default function Index() {
     damping: 40,
   });
 
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'dark')
+  }, [])
+
   const renderCircle = (image: string) => {
     return (
       <div
@@ -49,7 +54,7 @@ export default function Index() {
   };
 
   return (
-    <div className="px-4 lg:px-0">
+    <div className="px-4 lg:px-0" data-theme="dark">
       <Header />
       <div className="container mx-auto max-w-screen-lg text-5xl">
         <div className="flex flex-col justify-center items-center mb-12">
