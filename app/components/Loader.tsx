@@ -1,7 +1,7 @@
 import React from "react";
 
 const Dot = () => {
-  return <div className="w-3 h-3 bg-slate-500 rounded-full animate-bounce" />;
+  return <div className="w-3 h-3 bg-accent rounded-full animate-bounce" />;
 };
 
 const Loader = () => {

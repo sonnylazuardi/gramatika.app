@@ -1,7 +1,12 @@
 import React from "react";
-import { isSafari, isMobile } from "react-device-detect";
+import {
+  isSafari,
+  isMobileSafari,
+  isSamsungBrowser,
+  isAndroid,
+} from "react-device-detect";
 
-export function useDebounce(value: any, delay: number) {
+export const useDebounce = (value: any, delay: number) => {
   const [debouncedValue, setDebouncedValue] = React.useState(value);
 
   React.useEffect(() => {
@@ -14,7 +19,7 @@ export function useDebounce(value: any, delay: number) {
   }, [delay, value]);
 
   return debouncedValue;
-}
+};
 
 export const usePrevious = <T extends unknown>(value: T): T | undefined => {
   const ref = React.useRef<T>();
@@ -25,11 +30,7 @@ export const usePrevious = <T extends unknown>(value: T): T | undefined => {
 };
 
 export const formatText = (text: string) => {
-  if (isSafari || isMobile) {
-    return text.replace(/[\w\-']*/gi, (m) => `¦${m}`).split(/¦/g);
-  } else {
-    return text.split(/(?=[\s.,:!;?()[\]"])|(?<=[\s.,:!;?()[\]"])/);
-  }
+  return text.replace(/[\w\-']*/gi, (m) => `¦${m}`).split(/¦/g);
 };
 
 export const startsWithCapital = (word: string) => {

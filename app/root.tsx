@@ -9,13 +9,14 @@ import {
 } from "remix";
 import type { MetaFunction } from "remix";
 import styles from "./tailwind.css";
+import webStyles from "~/styles/index.css";
 
 export const meta: MetaFunction = () => {
   return { title: "Gramatika - Asisten Bahasa Indonesia dengan ejaan baku" };
 };
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [{ rel: "stylesheet", href: styles }, { rel: 'stylesheet', href: webStyles }];
 }
 
 export default function App() {
