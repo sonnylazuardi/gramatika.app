@@ -15,7 +15,7 @@ import { PopupState, WordCorrection } from "./data/types";
 import { checkWord, setKbbiWord } from "./data/service";
 
 const Popup = () => {
-  const [text, setText] = React.useState("");
+  const [text, setText] = React.useState(" ");
   const debouncedSearchText = useDebounce(text, 1000);
   const [kbbiMode, setKbbiMode] = React.useState(false);
   const [popupState, setPopupState] = React.useState<PopupState>(
