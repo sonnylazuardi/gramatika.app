@@ -116,7 +116,7 @@ const Popup = () => {
   }, [setKbbiMode]);
 
   const currentCorrection: WordCorrection | null = corrections[0];
-
+  const editorClass = "editor w-full textarea bg-base-200 rounded-md text-base " + (text.trim() === "" && "empty");
   return (
     <div className="flex flex-1">
       <div className="flex flex-1 flex-col justify-start items-start p-4 max-w-lg mx-auto">
@@ -125,13 +125,11 @@ const Popup = () => {
           className={`bg-base-200 relative overflow-y-auto overflow-x-hidden scrollbar-hide w-full rounded-md ${kbbiMode ? "kbbi" : ""
             }`}
         >
-          <div ref={editorRef} tabIndex={0} placeholder="Tulis sesuatu di sini..." style={{ minHeight: 400, whiteSpace: "pre-wrap" }} className={"editor w-full textarea bg-base-200 rounded-md " + (text.trim() === "" && "empty")}>{text}</div>
+          <div ref={editorRef} tabIndex={0} placeholder="Tulis sesuatu di sini..." style={{ minHeight: 400, whiteSpace: "pre-wrap" }}
+            className={editorClass}>{text}</div>
           <div
             style={{ minHeight: 400, whiteSpace: "pre-wrap", opacity: popupState === PopupState.loading ? 0 : 0.6, position: 'absolute', top: 0, pointerEvents: 'none' }}
-            className={
-              "editor w-full textarea bg-base-200 rounded-md select-none " +
-              (text.trim() === "" && "empty")
-            }
+            className={editorClass}
             placeholder="Tulis sesuatu di sini..."
             ref={editorRefShadow}
           >
