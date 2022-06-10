@@ -8,7 +8,6 @@ import Header from "../components/Header";
 //@ts-ignore
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import Star from "~/components/Star";
-import React from "react";
 
 const variants = {
   rest: {
@@ -32,10 +31,6 @@ export default function Index() {
     damping: 40,
   });
 
-  React.useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'dark')
-  }, [])
-
   const renderCircle = (image: string) => {
     return (
       <div
@@ -53,13 +48,15 @@ export default function Index() {
     );
   };
 
+  const buttonClass = "border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+
   return (
-    <div className="px-4 lg:px-0" data-theme="dark">
+    <div className="px-4 lg:px-0">
       <Header />
       <div className="container mx-auto max-w-screen-lg text-5xl">
         <div className="flex flex-col justify-center items-center mb-12">
           <h1 className="mt-32 text-center max-w-2xl text-4xl lg:text-6xl mb-6 font-bold">
-            Memperkenalkan Gramatika!
+            Memperkenalkan Gramatika Web!
           </h1>
           <p className="text-base font-normal text-center max-w-md">
             Asisten menulis Bahasa Indonesia baku dan KBBI di peramban (browser)
@@ -67,17 +64,39 @@ export default function Index() {
           </p>
         </div>
 
-        <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-6">
+        <div className="flex justify-center items-center mb-4">
+          <div className="w-96">
+            <motion.a
+              whileHover="hover"
+              href="/web"
+              className={buttonClass + ' bg-black border-0'}
+              data-splitbee-event="Web"
+              target="_self"
+            >
+              Akses Gramatika Web
+
+              <motion.div
+                className="flex justify-center items-center ml-4"
+                style={{ width: 40, height: 40 }}
+                variants={variants}
+              >
+
+                <img src="images/arrow_white.svg" />
+              </motion.div>
+            </motion.a>
+          </div>
+        </div>
+
+        <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-20">
           <motion.a
             whileHover="hover"
             href="https://chrome.google.com/webstore/detail/gramatika-bahasa-indonesi/hhodeijkemcdbelkfdhglgmgpmgkfekk?hl=id"
-            className="bg-black text-white text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+            className={buttonClass}
             data-splitbee-event="Chrome"
             target="_blank"
           >
             <img src="images/chrome_logo.png" className="mr-4" />
-            Pasang Pengaya di
-            <br /> Chrome Webstore{" "}
+
             <motion.div
               className="flex justify-center items-center ml-4"
               style={{ width: 40, height: 40 }}
@@ -89,13 +108,12 @@ export default function Index() {
           <motion.a
             whileHover="hover"
             href="https://addons.mozilla.org/en-GB/firefox/addon/gramatika/"
-            className="border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+            className={buttonClass}
             data-splitbee-event="Firefox"
             target="_blank"
           >
             <img src="images/firefox_logo.svg" className="mr-4" />
-            Pasang Pengaya
-            <br /> di Firefox{" "}
+
             <motion.div
               className="flex justify-center items-center ml-4"
               style={{ width: 40, height: 40 }}
@@ -107,13 +125,12 @@ export default function Index() {
           <motion.a
             whileHover="hover"
             href="https://play.google.com/store/apps/details?id=com.sonnylab.gramatika"
-            className="border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+            className={buttonClass}
             data-splitbee-event="Android"
             target="_blank"
           >
             <img src="images/android_logo.png" className="mr-4" />
-            Aplikasi Android
-            <br /> di Play Store{" "}
+
             <motion.div
               className="flex justify-center items-center ml-4"
               style={{ width: 40, height: 40 }}
