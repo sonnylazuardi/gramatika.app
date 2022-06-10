@@ -47,6 +47,8 @@ const Popup = () => {
     if (editorRef.current) {
       (editorRef.current as any).focus();
     }
+
+    document.addEventListener('focusout', function (e) { window.scrollTo(0, 0) });
   }, []);
 
   const prevSearch = usePrevious(debouncedSearchText);
