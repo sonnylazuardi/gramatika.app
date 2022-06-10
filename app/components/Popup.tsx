@@ -96,20 +96,11 @@ const Popup = () => {
   React.useEffect(() => {
     const searchChanged = prevSearch !== debouncedSearchText;
     if (searchChanged) {
-      // try {
-      //   chrome.storage.local.set({ words: debouncedSearchText });
-      // } catch (e) { }
-
       handleCheck(debouncedSearchText, setCorrections, kbbiMode);
     }
   }, [debouncedSearchText, corrections, setCorrections, kbbiMode]);
 
   React.useEffect(() => {
-    // chrome.storage.local.get(["showDictionary"], (result: any) => {
-    //   if (result) {
-    //     setKbbiMode(result.showDictionary);
-    //   }
-    // });
     if (window.localStorage.getItem('showDictionary') === '1') {
       setKbbiMode(true);
     }
@@ -323,8 +314,6 @@ const Popup = () => {
                   setKbbiMode((kbbiMode: any) => {
                     const newVal = !kbbiMode;
                     window.localStorage.setItem('showDictionary', newVal ? '1' : '0');
-
-                    //   chrome.storage.local.set({ showDictionary: !kbbiMode });
                     setIgnoredIds([]);
                     handleCheck(text, setCorrections, newVal);
                     return newVal;

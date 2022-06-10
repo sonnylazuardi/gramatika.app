@@ -22,32 +22,13 @@ const CardKateglo = ({
   React.useEffect(() => {
     setDescription("");
     if (newTitle) {
-      fetch(`https://kateglo.com/api.php?format=json&phrase=${newTitle}`)
+      fetch(`/web/api/${newTitle}`)
         .then((res) => res.json())
         .then((data) => {
-          if (data && data.kateglo && data.kateglo.definition) {
-            if (data.kateglo.definition.length) {
-              setDescription(
-                `${data.kateglo.definition
-                  .map((v: any, i: any) => `<b>${i + 1}.</b> ${v.def_text}`)
-                  .join(", ")}`
-              );
-            }
-          }
+          setDescription(data.definition);
         })
         .catch((e) => {
-          fetch(`https://katla.vercel.app/api/define/${newTitle}`)
-            .then((res) => res.json())
-            .then((data) => {
-              if (data) {
-                setDescription(
-                  `${data.map((v: any, i: any) => `<b>${i + 1}.</b> ${v}`).join(", ")}`
-                );
-              }
-            })
-            .catch((e) => {
-              setDescription(" ");
-            });
+          setDescription(" ");
         });
     }
   }, [newTitle]);
