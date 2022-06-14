@@ -12,7 +12,12 @@ import styles from "./tailwind.css";
 import webStyles from "~/styles/index.css";
 
 export const meta: MetaFunction = () => {
-  return { title: "Gramatika - Asisten Bahasa Indonesia dengan ejaan baku" };
+  return {
+    title: "Gramatika - Asisten Bahasa Indonesia dengan ejaan baku", description: "Gramatika - Asisten Bahasa Indonesia dengan ejaan baku di web, aplikasi dan ekstensi peramban",
+    "twitter:card": "summary_large_image",
+    "og:description": "Gramatika - Asisten Bahasa Indonesia dengan ejaan baku di web, aplikasi dan ekstensi peramban",
+    "og:image": "/gramatikaweb.png",
+  };
 };
 
 export function links() {
