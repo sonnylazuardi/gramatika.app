@@ -69,7 +69,7 @@ export default function Index() {
             <motion.a
               whileHover="hover"
               href="/web"
-              className={buttonClass + ' bg-black border-0'}
+              className={buttonClass + ' bg-black text-white border-0'}
               data-splitbee-event="Web"
               target="_self"
             >
@@ -216,7 +216,7 @@ export default function Index() {
         <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-6 relative">
           <div className="bg-base-200 h-96 flex flex-col p-4 rounded-2xl mb-6 overflow-hidden">
             <TwitterTweetEmbed
-              options={{ conversation: "none" }}
+              options={{ conversation: "none", theme: 'dark' }}
               tweetId={"1470075100758102024"}
             />
           </div>
