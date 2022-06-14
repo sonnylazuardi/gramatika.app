@@ -141,7 +141,7 @@ export default function Index() {
           </motion.a>
         </div>
 
-        <div className="mx-auto mb-10" style={{ width: 500 }}>
+        <div className="mx-auto mb-10" style={{ width: 500, maxWidth: '100%' }}>
           <TwitterTweetEmbed
             tweetId="1535142798328209410"
             options={{
