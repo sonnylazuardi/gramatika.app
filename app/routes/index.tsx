@@ -64,27 +64,44 @@ export default function Index() {
           </p>
         </div>
 
-        <div className="flex justify-center items-center mb-4">
-          <div className="w-96">
-            <motion.a
-              whileHover="hover"
-              href="/web"
-              className={buttonClass + ' bg-black text-white border-0'}
-              data-splitbee-event="Web"
-              target="_self"
+        <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-6">
+
+          <motion.a
+            whileHover="hover"
+            href="/web"
+            className={buttonClass + ' bg-black text-white border-0'}
+            data-splitbee-event="Web"
+            target="_self"
+          >
+            Akses Gramatika Web
+
+            <motion.div
+              className="flex justify-center items-center ml-4"
+              style={{ width: 40, height: 40 }}
+              variants={variants}
             >
-              Akses Gramatika Web
 
-              <motion.div
-                className="flex justify-center items-center ml-4"
-                style={{ width: 40, height: 40 }}
-                variants={variants}
-              >
+              <img src="images/arrow_white.svg" />
+            </motion.div>
+          </motion.a>
+          <motion.a
+            whileHover="hover"
+            href="https://www.figma.com/community/plugin/1013364535408157858"
+            className={buttonClass}
+            data-splitbee-event="Figma"
+            target="_self"
+          >
+            Figma Plugin
 
-                <img src="images/arrow_white.svg" />
-              </motion.div>
-            </motion.a>
-          </div>
+            <motion.div
+              className="flex justify-center items-center ml-4"
+              style={{ width: 40, height: 40 }}
+              variants={variants}
+            >
+
+              <img src="images/arrow_white.svg" />
+            </motion.div>
+          </motion.a>
         </div>
 
         <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-20">
