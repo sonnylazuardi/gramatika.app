@@ -1,11 +1,24 @@
 import akarata from "akarata";
 import Fuse from "fuse.js";
+import { create, insert, search } from "@nearform/lyra";
 import { formatCapital } from "../utils";
 import baku from "./baku.json";
 import kamus from "./kamus.json";
 import { WordCorrection } from "./types";
 
+const db = create({
+  schema: {
+    w: "string",
+  },
+});
+
 const entriesFuse = kamus.map((item) => ({ text: item }));
+
+kamus.forEach((item) => {
+  insert(db, {
+    w: item,
+  });
+});
 
 interface WordCache {
   [key: string]: WordCorrection;
@@ -65,20 +78,26 @@ export const checkWord = (currentText, id, setCorrections) => {
         setCorrections((c: any) => [...c, ...result]);
       }
     } else {
-      const results = fuse.search(checkText);
-      if (results.length) {
+      // const results = fuse.search(checkText);
+
+      const searchResult = search(db, {
+        term: checkText,
+        tolerance: 1,
+        properties: "*",
+      });
+      if (searchResult.hits.length) {
         resultCache[checkText] = {
           id: 0,
           found: true,
           old: currentText,
-          new: formatCapital(currentText, results[0].item?.text),
+          new: formatCapital(currentText, searchResult.hits[0].w),
         };
         if (checkText !== "") {
           result = [
             {
               old: currentText,
               id,
-              new: formatCapital(currentText, results[0].item?.text),
+              new: formatCapital(currentText, searchResult.hits[0].w),
             },
           ];
           setCorrections((c: any) => [...c, ...result]);

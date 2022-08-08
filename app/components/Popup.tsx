@@ -40,7 +40,10 @@ const Popup = () => {
 
   useEditable(
     editorRefShadow,
-    (value) => { console.log(value) }, { disabled: true }
+    (value) => {
+      console.log(value);
+    },
+    { disabled: true }
   );
 
   React.useEffect(() => {
@@ -57,6 +60,7 @@ const Popup = () => {
   const handleCheck = async (debouncedSearchText, setCorrections, kbbiMode) => {
     setCorrections([]);
     if (!kbbiMode) {
+      console.time("test");
       return Promise.all(
         formatText(debouncedSearchText).map((content, i) => {
           return checkWord(content, i, setCorrections);
@@ -65,6 +69,8 @@ const Popup = () => {
         const corrections = data.reduce((arr, row) => {
           return arr.concat(row);
         }, []);
+
+        console.timeEnd("test");
 
         if (corrections.length === 0 && debouncedSearchText.trim() !== "") {
           setPopupState(PopupState.finished);
@@ -103,25 +109,42 @@ const Popup = () => {
   }, [debouncedSearchText, corrections, setCorrections, kbbiMode]);
 
   React.useEffect(() => {
-    if (window.localStorage.getItem('showDictionary') === '1') {
+    if (window.localStorage.getItem("showDictionary") === "1") {
       setKbbiMode(true);
     }
   }, [setKbbiMode]);
 
   const currentCorrection: WordCorrection | null = corrections[0];
-  const editorClass = "editor w-full textarea bg-base-200 rounded-md text-base " + (text.trim() === "" && "empty");
+  const editorClass =
+    "editor w-full textarea bg-base-200 rounded-md text-base " +
+    (text.trim() === "" && "empty");
   return (
     <div className="flex flex-1">
       <div className="flex flex-1 flex-col justify-start items-start p-4 max-w-lg mx-auto">
         <div
           style={{ height: 400 }}
-          className={`bg-base-200 relative overflow-y-auto overflow-x-hidden scrollbar-hide w-full rounded-md ${kbbiMode ? "kbbi" : ""
-            }`}
+          className={`bg-base-200 relative overflow-y-auto overflow-x-hidden scrollbar-hide w-full rounded-md ${
+            kbbiMode ? "kbbi" : ""
+          }`}
         >
-          <div ref={editorRef} tabIndex={0} placeholder="Tulis sesuatu di sini..." style={{ minHeight: 400, whiteSpace: "pre-wrap" }}
-            className={editorClass}>{text}</div>
           <div
-            style={{ minHeight: 400, whiteSpace: "pre-wrap", opacity: popupState === PopupState.loading ? 0 : 0.6, position: 'absolute', top: 0, pointerEvents: 'none' }}
+            ref={editorRef}
+            tabIndex={0}
+            placeholder="Tulis sesuatu di sini..."
+            style={{ minHeight: 400, whiteSpace: "pre-wrap" }}
+            className={editorClass}
+          >
+            {text}
+          </div>
+          <div
+            style={{
+              minHeight: 400,
+              whiteSpace: "pre-wrap",
+              opacity: popupState === PopupState.loading ? 0 : 0.6,
+              position: "absolute",
+              top: 0,
+              pointerEvents: "none",
+            }}
             className={editorClass}
             placeholder="Tulis sesuatu di sini..."
             ref={editorRefShadow}
@@ -167,8 +190,8 @@ const Popup = () => {
         ) : null}
 
         {popupState === PopupState.fixing &&
-          currentCorrection &&
-          !currentCorrection.notFound ? (
+        currentCorrection &&
+        !currentCorrection.notFound ? (
           <CardKateglo
             kbbiMode={kbbiMode}
             oldTitle={currentCorrection.old}
@@ -176,7 +199,7 @@ const Popup = () => {
             onConfirm={() => {
               if (!kbbiMode) {
                 const id = currentCorrection.id;
-                setPopupState(PopupState.loading)
+                setPopupState(PopupState.loading);
 
                 setText(
                   formatText(text)
@@ -195,7 +218,7 @@ const Popup = () => {
                 setCorrections((c) => {
                   const val = c.filter((v) => v.id !== id);
                   if (!val.length) {
-                    setTimeout(() => setPopupState(PopupState.finished), 1000)
+                    setTimeout(() => setPopupState(PopupState.finished), 1000);
                   }
                   return val;
                 });
@@ -227,8 +250,8 @@ const Popup = () => {
         ) : null}
 
         {popupState === PopupState.fixing &&
-          currentCorrection &&
-          currentCorrection.notFound ? (
+        currentCorrection &&
+        currentCorrection.notFound ? (
           <Card
             title={
               <h2 className="card-title space-x-1">
@@ -315,7 +338,10 @@ const Popup = () => {
                 onClick={() => {
                   setKbbiMode((kbbiMode: any) => {
                     const newVal = !kbbiMode;
-                    window.localStorage.setItem('showDictionary', newVal ? '1' : '0');
+                    window.localStorage.setItem(
+                      "showDictionary",
+                      newVal ? "1" : "0"
+                    );
                     setIgnoredIds([]);
                     handleCheck(text, setCorrections, newVal);
                     return newVal;
@@ -326,10 +352,7 @@ const Popup = () => {
               </button>
             </div>
             <div className="tooltip" data-tip="Pengaturan">
-              <a
-                href={""}
-                className="btn btn-circle btn-sm opacity-50"
-              >
+              <a href={""} className="btn btn-circle btn-sm opacity-50">
                 <SettingsIcon />
               </a>
             </div>
