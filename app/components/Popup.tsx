@@ -12,7 +12,7 @@ import SettingsIcon from "./icons/settings";
 import BookIcon from "./icons/book";
 import EditIcon from "./icons/edit";
 import { PopupState, WordCorrection } from "./data/types";
-import { checkWord, setKbbiWord } from "./data/service";
+import { checkWord, setKbbiWord } from "./data/service.client";
 
 const Popup = () => {
   const [text, setText] = React.useState(" ");

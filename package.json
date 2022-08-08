@@ -26,6 +26,7 @@
     "react-twitter-embed": "^3.0.3",
     "remix": "^1.1.1",
     "tailwind-scrollbar-hide": "^1.1.7",
+    "typo-js": "^1.2.2",
     "use-editable": "^2.3.3"
   },
   "devDependencies": {
