@@ -149,3 +149,14 @@ a {
   --blue11: hsl(210, 100%, 66.1%);
   --blue12: hsl(206, 98%, 95.8%);
 }
+.example {
+  text-decoration: underline;
+}
+.label {
+  line-height: 28px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}

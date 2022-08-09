@@ -1,112 +1,198 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 import * as Popover from '@radix-ui/react-popover';
 import { Command } from 'cmdk';
-import { Logo, LinearIcon, FigmaIcon, SlackIcon, YouTubeIcon, RaycastIcon } from 'components';
+import { Logo } from 'components/icons';
+const Typo = require('typo-js');
+
+function DocsIcon() {
+  return (
+    <svg
+      fill="none"
+      height="24"
+      shapeRendering="geometricPrecision"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+      <path d="M14 2v6h6"></path>
+      <path d="M16 13H8"></path>
+      <path d="M16 17H8"></path>
+      <path d="M10 9H8"></path>
+    </svg>
+  );
+}
+
+function TickIcon() {
+  return (
+    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M17.0957 10.3315L11.5926 15.5815L8.8457 12.9565"
+        stroke="white"
+        strokeWidth="1.50183"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12.9707 21.5815C17.9413 21.5815 21.9707 17.5521 21.9707 12.5815C21.9707 7.61098 17.9413 3.58154 12.9707 3.58154C8.00014 3.58154 3.9707 7.61098 3.9707 12.5815C3.9707 17.5521 8.00014 21.5815 12.9707 21.5815Z"
+        stroke="white"
+        strokeWidth="1.50183"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+function WarnIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 9.75V13.5" stroke="white" strokeWidth="1.6875" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M10.7062 3.74987L2.45625 17.9999C2.32482 18.2275 2.25551 18.4857 2.25528 18.7486C2.25505 19.0114 2.32389 19.2697 2.45492 19.4976C2.58595 19.7255 2.77456 19.9149 3.00185 20.0469C3.22914 20.179 3.48714 20.2489 3.75 20.2499H20.25C20.5129 20.2489 20.7709 20.179 20.9981 20.0469C21.2254 19.9149 21.414 19.7255 21.5451 19.4976C21.6761 19.2697 21.7449 19.0114 21.7447 18.7486C21.7445 18.4857 21.6752 18.2275 21.5437 17.9999L13.2937 3.74987C13.1633 3.52193 12.975 3.33251 12.7478 3.20076C12.5206 3.06902 12.2626 2.99963 12 2.99963C11.7374 2.99963 11.4794 3.06902 11.2522 3.20076C11.025 3.33251 10.8367 3.52193 10.7062 3.74987V3.74987Z"
+        stroke="white"
+        strokeWidth="1.6875"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 18C12.6213 18 13.125 17.4963 13.125 16.875C13.125 16.2537 12.6213 15.75 12 15.75C11.3787 15.75 10.875 16.2537 10.875 16.875C10.875 17.4963 11.3787 18 12 18Z"
+        fill="white"
+      />
+    </svg>
+  );
+}
+
+function useDebounce(value: string, delay: number) {
+  // State and setters for debounced value
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(
+    () => {
+      // Update debounced value after delay
+      const handler = setTimeout(() => {
+        setDebouncedValue(value);
+      }, delay);
+      // Cancel the timeout if value changes (also on delay change or unmount)
+      // This is how we prevent debounced value from updating if value is changed ...
+      // .. within the delay period. Timeout gets cleared and restarted.
+      return () => {
+        clearTimeout(handler);
+      };
+    },
+    [value, delay], // Only re-call effect if value or delay changes
+  );
+  return debouncedValue;
+}
 
 export function RaycastCMDK() {
   const { resolvedTheme: theme } = useTheme();
-  const [value, setValue] = React.useState('linear');
-  const inputRef = React.useRef<HTMLInputElement | null>(null);
-  const listRef = React.useRef(null);
+  const [value, setValue] = useState('');
+  const [dictionary, setDictionary] = useState<any>(null);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const listRef = useRef(null);
 
   React.useEffect(() => {
     inputRef?.current?.focus();
+
+    const dictionary = new Typo('en_US', false, false, { dictionaryPath: 'dic' });
+    setDictionary(dictionary);
   }, []);
+
+  const debouncedValue = useDebounce(value, 250);
+  const isWord = debouncedValue.trim() !== '';
+  const isSentence = debouncedValue.trim().includes(' ');
+
+  // Effect for typo check
+  useEffect(
+    () => {
+      if (debouncedValue && dictionary && !isSentence) {
+        setSuggestions(dictionary.suggest(debouncedValue));
+      } else {
+        setSuggestions([]);
+      }
+    },
+    [debouncedValue, dictionary, isSentence], // Only call effect if debounced search term changes
+  );
 
   return (
     <div className="raycast">
-      <Command value={value} onValueChange={(v) => setValue(v)}>
+      <Command>
         <div cmdk-raycast-top-shine="" />
-        <Command.Input ref={inputRef} autoFocus placeholder="Search for apps and commands..." />
+        <Command.Input
+          ref={inputRef}
+          autoFocus
+          placeholder="Type a word to start spell checking..."
+          value={value}
+          onValueChange={(v) => setValue(v)}
+        />
         <hr cmdk-raycast-loader="" />
         <Command.List ref={listRef}>
-          <Command.Empty>No results found.</Command.Empty>
-          <Command.Group heading="Suggestions">
-            <Item value="Linear">
-              <Logo>
-                <LinearIcon
-                  style={{
-                    width: 12,
-                    height: 12,
-                  }}
-                />
-              </Logo>
-              Linear
-            </Item>
-            <Item value="Figma">
-              <Logo>
-                <FigmaIcon />
-              </Logo>
-              Figma
-            </Item>
-            <Item value="Slack">
-              <Logo>
-                <SlackIcon />
-              </Logo>
-              Slack
-            </Item>
-            <Item value="YouTube">
-              <Logo>
-                <YouTubeIcon />
-              </Logo>
-              YouTube
-            </Item>
-            <Item value="Raycast">
-              <Logo>
-                <RaycastIcon />
-              </Logo>
-              Raycast
-            </Item>
-          </Command.Group>
-          <Command.Group heading="Commands">
-            <Item isCommand value="Clipboard History">
-              <Logo>
-                <ClipboardIcon />
-              </Logo>
-              Clipboard History
-            </Item>
-            <Item isCommand value="Import Extension">
-              <HammerIcon />
-              Import Extension
-            </Item>
-            <Item isCommand value="Manage Extensions">
-              <HammerIcon />
-              Manage Extensions
-            </Item>
-          </Command.Group>
+          <Command.Empty>
+            {isWord ? (
+              isSentence ? (
+                <div className="label">
+                  <WarnIcon /> Try typing a word not sentence!
+                </div>
+              ) : (
+                <div className="label">
+                  <TickIcon />
+                  {` "`}
+                  {debouncedValue}
+                  {`"`} is spelled correctly
+                </div>
+              )
+            ) : (
+              <div>
+                Try typing a word, for{' '}
+                <a href="#" className="example" onClick={() => setValue('exampll')}>
+                  exampll
+                </a>
+                :{' '}
+                <a href="#" className="example" onClick={() => setValue('playy')}>
+                  playy
+                </a>
+                ,{' '}
+                <a href="#" className="example" onClick={() => setValue('mistaks')}>
+                  mistaks
+                </a>
+              </div>
+            )}
+          </Command.Empty>
+          {suggestions.length ? (
+            <Command.Group heading="Suggestions">
+              {suggestions.map((item, i) => {
+                return (
+                  <Item
+                    value={`${value}-${i}`}
+                    key={i}
+                    onSelect={() => {
+                      setValue(item);
+                    }}
+                  >
+                    <Logo>
+                      <DocsIcon />
+                    </Logo>
+                    {item}
+                  </Item>
+                );
+              })}
+            </Command.Group>
+          ) : null}
         </Command.List>
-
-        <div cmdk-raycast-footer="">
-          {theme === 'dark' ? <RaycastDarkIcon /> : <RaycastLightIcon />}
-
-          <button cmdk-raycast-open-trigger="">
-            Open Application
-            <kbd>↵</kbd>
-          </button>
-
-          <hr />
-
-          <SubCommand listRef={listRef} selectedValue={value} inputRef={inputRef} />
-        </div>
       </Command>
     </div>
   );
 }
 
-function Item({
-  children,
-  value,
-  isCommand = false,
-}: {
-  children: React.ReactNode;
-  value: string;
-  isCommand?: boolean;
-}) {
+function Item({ children, value, onSelect = () => {} }: { children: React.ReactNode; value: string; onSelect?: any }) {
   return (
-    <Command.Item value={value} onSelect={() => {}}>
+    <Command.Item value={value} onSelect={onSelect}>
       {children}
-      <span cmdk-raycast-meta="">{isCommand ? 'Command' : 'Application'}</span>
+      <span cmdk-raycast-meta="">→</span>
     </Command.Item>
   );
 }

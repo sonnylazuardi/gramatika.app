@@ -110,7 +110,6 @@
 }
 
 .githubButton {
-  width: 177px;
   padding: 0 12px;
   display: inline-flex;
   align-items: center;
@@ -322,6 +321,7 @@
   gap: 4px;
   width: fit-content;
   margin: 32px auto;
+  margin-bottom: 100px;
   bottom: 16px;
   color: var(--gray11);
   font-size: 13px;
@@ -338,7 +338,7 @@
     border-radius: 9999px;
     padding: 4px;
     margin: 0 -2px;
-    transition: background 150ms ease;
+    transition: background ease;
 
     &:hover,
     &:focus-visible {
@@ -435,7 +435,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  opacity: 0;
+  opacity: 1;
 }
 
 .footer[data-animate='true'] {
