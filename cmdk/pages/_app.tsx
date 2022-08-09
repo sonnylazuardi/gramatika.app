@@ -11,8 +11,8 @@ import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 
 const title = '⌘K';
-const description = 'Fast, composable, unstyled command menu for React';
-const siteUrl = 'https://cmdk.paco.me';
+const description = 'Typo Spell Checker with Command K';
+const siteUrl = 'https://cmdk.gramatika.app';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

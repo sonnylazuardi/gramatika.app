@@ -119,7 +119,7 @@ function Footer() {
       <div className={styles.footerText}>
         Modified by{' '}
         <a href="https://sonnylab.com" target="_blank" rel="noopener noreferrer">
-          <img src="/rauno.jpeg" alt="Avatar of Sonny" />
+          <img src="/sonny.jpg" alt="Avatar of Sonny" />
           Sonny
         </a>
         , cmdk library from
