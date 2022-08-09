@@ -48,6 +48,8 @@ export default function Index() {
     );
   };
 
+  const buttonClass = "border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+
   return (
     <div className="px-4 lg:px-0">
       <Header />
@@ -66,7 +68,7 @@ export default function Index() {
           <motion.a
             whileHover="hover"
             href="https://chrome.google.com/webstore/detail/gramatika-bahasa-indonesi/hhodeijkemcdbelkfdhglgmgpmgkfekk?hl=id"
-            className="bg-black text-white text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+            className={buttonClass}
             data-splitbee-event="Chrome"
             target="_blank"
           >
@@ -84,7 +86,7 @@ export default function Index() {
           <motion.a
             whileHover="hover"
             href="https://addons.mozilla.org/en-GB/firefox/addon/gramatika/"
-            className="border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+            className={buttonClass}
             data-splitbee-event="Firefox"
             target="_blank"
           >
@@ -102,7 +104,7 @@ export default function Index() {
           <motion.a
             whileHover="hover"
             href="https://play.google.com/store/apps/details?id=com.sonnylab.gramatika"
-            className="border border-base-content border-solid bg-base-100 text-base-content text-sm flex flex-row p-4 items-center justify-center rounded-2xl font-semibold mb-2"
+            className={buttonClass}
             data-splitbee-event="Android"
             target="_blank"
           >
@@ -190,7 +192,7 @@ export default function Index() {
             />
           </div>
           <div className="bg-base-200 h-96 flex flex-col justify-center items-center rounded-2xl mb-6 overflow-hidden">
-            <h2 className="text-3xl font-semibold mb-2">Rating 4.94/5</h2>
+            <h2 className="text-3xl font-semibold mb-2">Rating 4.95/5</h2>
             <div className="mb-2">
               <Star />
               <Star />
@@ -198,7 +200,7 @@ export default function Index() {
               <Star />
               <Star />
             </div>
-            <p className="text-base">850+ Pengguna</p>
+            <p className="text-base">1000+ Pengguna</p>
           </div>
         </div>
         <div className="text-sm text-center">
