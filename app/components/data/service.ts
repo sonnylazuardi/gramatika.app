@@ -1,5 +1,5 @@
-import akarata from "akarata";
-import Fuse from "fuse.js";
+// import akarata from "akarata";
+// import Fuse from "fuse.js";
 import { create, insert, search } from "@nearform/lyra";
 import { formatCapital } from "../utils";
 import baku from "./baku.json";
@@ -12,7 +12,7 @@ const db = create({
   },
 });
 
-const entriesFuse = kamus.map((item) => ({ text: item }));
+// const entriesFuse = kamus.map((item) => ({ text: item }));
 
 kamus.forEach((item) => {
   insert(db, {
@@ -30,16 +30,16 @@ const isNumber = (n: any) => {
   return !isNaN(parseFloat(n)) && !isNaN(n - 0);
 };
 
-const fuse: any = new Fuse(entriesFuse, {
-  keys: ["text"],
-  //@ts-ignore
-  id: "text",
-  shouldSort: true,
-  threshold: 0.2,
-  location: 0,
-  distance: 100,
-  minMatchCharLength: 3,
-});
+// const fuse: any = new Fuse(entriesFuse, {
+//   keys: ["text"],
+//   //@ts-ignore
+//   id: "text",
+//   shouldSort: true,
+//   threshold: 0.2,
+//   location: 0,
+//   distance: 100,
+//   minMatchCharLength: 3,
+// });
 
 //@ts-ignore
 export const checkWord = (currentText, id, setCorrections) => {
@@ -58,7 +58,7 @@ export const checkWord = (currentText, id, setCorrections) => {
     // do nothing
   } else if (kamus.includes(checkText)) {
     // console.log(`${currentText} ==> NO CHANGE`);
-  } else if (kamus.includes(akarata.stem(checkText))) {
+    // } else if (kamus.includes(akarata.stem(checkText))) {
     // console.log(`${currentText} ==> ${akarata.stem(currentText)}`);
   } else if (isNumber(checkText)) {
     // do nothing
