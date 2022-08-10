@@ -1,18 +1,20 @@
 import { json } from "remix/server";
 
 export async function loader({ params }: { params: any }) {
-  return fetch(`https://kateglo.com/api.php?format=json&phrase=${params.q}`)
+  return fetch(`https://katla.vercel.app/api/define/${params.q}`, {
+    headers: {
+      Authorization: "token CGZ12sbk3NP2",
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
-      if (data && data.kateglo && data.kateglo.definition) {
-        if (data.kateglo.definition.length) {
-          return json({
-            definition: `${data.kateglo.definition
-              .map((v: any, i: any) => `<b>${i + 1}.</b> ${v.def_text}`)
-              .join(", ")}`
-          })
-        }
+      if (data.length) {
+        return json({
+          definition: `${data
+            .map((v: any, i: any) => `<b>${i + 1}.</b> ${v}`)
+            .join(", ")}`,
+        });
       }
-      return json({ definition: '' });
-    })
+      return json({ definition: "" });
+    });
 }
