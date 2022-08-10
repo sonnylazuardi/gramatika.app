@@ -82,7 +82,7 @@ export const checkWord = (currentText, id, setCorrections) => {
 
       const searchResult = search(db, {
         term: checkText,
-        tolerance: 1,
+        tolerance: 3,
         properties: "*",
       });
       if (searchResult.hits.length) {
