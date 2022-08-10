@@ -1,4 +1,4 @@
-// import akarata from "akarata";
+import akarata from "akarata";
 // import Fuse from "fuse.js";
 import { create, insert, search } from "@nearform/lyra";
 import { formatCapital } from "../utils";
@@ -58,7 +58,7 @@ export const checkWord = (currentText, id, setCorrections) => {
     // do nothing
   } else if (kamus.includes(checkText)) {
     // console.log(`${currentText} ==> NO CHANGE`);
-    // } else if (kamus.includes(akarata.stem(checkText))) {
+  } else if (kamus.includes(akarata.stem(checkText))) {
     // console.log(`${currentText} ==> ${akarata.stem(currentText)}`);
   } else if (isNumber(checkText)) {
     // do nothing
