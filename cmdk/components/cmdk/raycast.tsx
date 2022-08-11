@@ -113,7 +113,7 @@ export function RaycastCMDK({ lang }: any) {
   useEffect(
     () => {
       // exception
-      if (!isEng && debouncedValue.trim().toLowerCase() === 'mempengaruhi') {
+      if (!isEng && (debouncedValue + '').trim().toLowerCase() === 'mempengaruhi') {
         setSpelledCorrect(false);
         return setSuggestions(['memengaruhi']);
       }
