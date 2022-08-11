@@ -1,32 +1,13 @@
 import styles from 'styles/index.module.scss';
 import React from 'react';
-import { AnimatePresence, AnimateSharedLayout, motion, MotionProps, useInView } from 'framer-motion';
-import {
-  FramerCMDK,
-  LinearCMDK,
-  LinearIcon,
-  VercelCMDK,
-  VercelIcon,
-  RaycastCMDK,
-  RaycastIcon,
-  CopyIcon,
-  FramerIcon,
-  GitHubIcon,
-  Code,
-  CopiedIcon,
-} from 'components';
+import { AnimatePresence, AnimateSharedLayout, motion, MotionProps } from 'framer-motion';
+import { RaycastCMDK, GitHubIcon } from 'components';
 import packageJSON from '../../cmdk/package.json';
-
-type TTheme = {
-  theme: Themes;
-  setTheme: Function;
-};
-
-type Themes = 'linear' | 'raycast' | 'vercel' | 'framer';
+import * as Popover from '@radix-ui/react-popover';
 
 export default function Index() {
-  const [theme, setTheme] = React.useState<Themes>('raycast');
-
+  const [lang, setLang] = React.useState('English');
+  const langProps = { lang, setLang };
   return (
     <>
       <main className={styles.main}>
@@ -40,35 +21,17 @@ export default function Index() {
 
             <div className={styles.buttons}>
               <GitHubButton />
+              <LanguageButton {...langProps} />
             </div>
           </div>
 
           <AnimatePresence exitBeforeEnter initial={false}>
-            {theme === 'framer' && (
-              <CMDKWrapper key="framer">
-                <FramerCMDK />
-              </CMDKWrapper>
-            )}
-            {theme === 'vercel' && (
-              <CMDKWrapper key="vercel">
-                <VercelCMDK />
-              </CMDKWrapper>
-            )}
-            {theme === 'linear' && (
-              <CMDKWrapper key="linear">
-                <LinearCMDK />
-              </CMDKWrapper>
-            )}
-            {theme === 'raycast' && (
-              <CMDKWrapper key="raycast">
-                <RaycastCMDK />
-              </CMDKWrapper>
-            )}
+            <CMDKWrapper key="raycast">
+              <RaycastCMDK lang={lang} />
+            </CMDKWrapper>
           </AnimatePresence>
 
           <div aria-hidden className={styles.line} />
-
-          {/* <Codeblock /> */}
         </div>
         <Footer />
       </main>
@@ -104,6 +67,23 @@ function GitHubButton() {
       <GitHubIcon />
       gramatika.app
     </a>
+  );
+}
+
+function LanguageButton({ lang, setLang }: any) {
+  return (
+    <Popover.Root>
+      <Popover.Trigger className={styles.lang}>{lang}</Popover.Trigger>
+      <Popover.Content className={styles.langSelect}>
+        <Popover.Arrow style={{ fill: 'white' }} />
+        <Popover.Close className={styles.langClose} onClick={() => setLang('English')}>
+          English
+        </Popover.Close>
+        <Popover.Close className={styles.langClose} onClick={() => setLang('Indonesia')}>
+          Indonesia
+        </Popover.Close>
+      </Popover.Content>
+    </Popover.Root>
   );
 }
 

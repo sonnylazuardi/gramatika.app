@@ -484,3 +484,33 @@
     }
   }
 }
+
+.langSelect {
+  background: white;
+  color: black;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lang {
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.lang:hover {
+  background: var(--grayA3);
+}
+
+.langClose {
+  cursor: pointer;
+  color: black;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.langClose:hover {
+  background: #eee;
+}

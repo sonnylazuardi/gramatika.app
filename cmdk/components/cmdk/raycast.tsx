@@ -87,7 +87,7 @@ function useDebounce(value: string, delay: number) {
   return debouncedValue;
 }
 
-export function RaycastCMDK() {
+export function RaycastCMDK({ lang }: any) {
   const { resolvedTheme: theme } = useTheme();
   const [value, setValue] = useState('');
   const [dictionary, setDictionary] = useState<any>(null);
@@ -98,9 +98,9 @@ export function RaycastCMDK() {
   React.useEffect(() => {
     inputRef?.current?.focus();
 
-    const dictionary = new Typo('en_US', false, false, { dictionaryPath: 'dic' });
+    const dictionary = new Typo(lang === 'English' ? 'en_US' : 'id_ID', false, false, { dictionaryPath: 'dic' });
     setDictionary(dictionary);
-  }, []);
+  }, [lang]);
 
   const debouncedValue = useDebounce(value, 250);
   const isWord = debouncedValue.trim() !== '';
@@ -117,6 +117,7 @@ export function RaycastCMDK() {
     },
     [debouncedValue, dictionary, isSentence], // Only call effect if debounced search term changes
   );
+  const isEng = lang === 'English';
 
   return (
     <div className="raycast">
@@ -125,7 +126,7 @@ export function RaycastCMDK() {
         <Command.Input
           ref={inputRef}
           autoFocus
-          placeholder="Type a word to start spell checking..."
+          placeholder={isEng ? 'Type a word to start spell checking...' : 'Ketik suatu kata untuk mulai...'}
           value={value}
           onValueChange={(v) => setValue(v)}
         />
@@ -135,30 +136,48 @@ export function RaycastCMDK() {
             {isWord ? (
               isSentence ? (
                 <div className="label">
-                  <WarnIcon /> Try typing a word not sentence!
+                  <WarnIcon /> {isEng ? 'Try typing a word not sentence!' : 'Ketik kata bukan kalimat!'}
                 </div>
               ) : (
                 <div className="label">
                   <TickIcon />
                   {` "`}
                   {debouncedValue}
-                  {`"`} is spelled correctly
+                  {`"`} {isEng ? ' is spelled correctly' : ' adalah kata baku'}
                 </div>
               )
             ) : (
               <div>
-                Try typing a word, for{' '}
-                <a href="#" className="example" onClick={() => setValue('exampll')}>
-                  exampll
-                </a>
-                :{' '}
-                <a href="#" className="example" onClick={() => setValue('playy')}>
-                  playy
-                </a>
-                ,{' '}
-                <a href="#" className="example" onClick={() => setValue('mistaks')}>
-                  mistaks
-                </a>
+                {isEng ? 'Try typing a word, for' : 'Coba ketik kata, contohnya: '}{' '}
+                {isEng ? (
+                  <>
+                    <a href="#" className="example" onClick={() => setValue('exampll')}>
+                      exampll
+                    </a>
+                    :{' '}
+                    <a href="#" className="example" onClick={() => setValue('playy')}>
+                      playy
+                    </a>
+                    ,{' '}
+                    <a href="#" className="example" onClick={() => setValue('mistaks')}>
+                      mistaks
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <a href="#" className="example" onClick={() => setValue('semuaa')}>
+                      semuaa
+                    </a>
+                    :{' '}
+                    <a href="#" className="example" onClick={() => setValue('sekedar')}>
+                      sekedar
+                    </a>
+                    ,{' '}
+                    <a href="#" className="example" onClick={() => setValue('terong')}>
+                      terong
+                    </a>
+                  </>
+                )}
               </div>
             )}
           </Command.Empty>
