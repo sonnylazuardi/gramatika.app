@@ -90,6 +90,7 @@ function useDebounce(value: string, delay: number) {
 export function RaycastCMDK({ lang }: any) {
   const { resolvedTheme: theme } = useTheme();
   const [value, setValue] = useState('');
+  const [spelledCorrect, setSpelledCorrect] = useState(false);
   const [dictionary, setDictionary] = useState<any>(null);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -106,18 +107,26 @@ export function RaycastCMDK({ lang }: any) {
   const isWord = debouncedValue.trim() !== '';
   const isSentence = debouncedValue.trim().includes(' ');
 
+  const isEng = lang === 'English';
+
   // Effect for typo check
   useEffect(
     () => {
+      // exception
+      if (!isEng && debouncedValue.trim().toLowerCase() === 'mempengaruhi') {
+        setSpelledCorrect(false);
+        return setSuggestions(['memengaruhi']);
+      }
+
       if (debouncedValue && dictionary && !isSentence) {
+        setSpelledCorrect(dictionary.check(debouncedValue));
         setSuggestions(dictionary.suggest(debouncedValue));
       } else {
         setSuggestions([]);
       }
     },
-    [debouncedValue, dictionary, isSentence], // Only call effect if debounced search term changes
+    [debouncedValue, dictionary, isSentence, isEng], // Only call effect if debounced search term changes
   );
-  const isEng = lang === 'English';
 
   return (
     <div className="raycast">
@@ -138,12 +147,19 @@ export function RaycastCMDK({ lang }: any) {
                 <div className="label">
                   <WarnIcon /> {isEng ? 'Try typing a word not sentence!' : 'Ketik kata bukan kalimat!'}
                 </div>
-              ) : (
+              ) : spelledCorrect ? (
                 <div className="label">
                   <TickIcon />
                   {` "`}
                   {debouncedValue}
                   {`"`} {isEng ? ' is spelled correctly' : ' adalah kata baku'}
+                </div>
+              ) : (
+                <div className="label">
+                  <WarnIcon />
+                  {` "`}
+                  {debouncedValue}
+                  {`"`} {isEng ? ' is spelled wrongly' : ' bukan kata baku'}
                 </div>
               )
             ) : (
