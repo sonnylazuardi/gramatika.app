@@ -56,32 +56,33 @@ export default function Index() {
       <div className="container mx-auto max-w-screen-lg text-5xl">
         <div className="flex flex-col justify-center items-center mb-12">
           <h1 className="mt-32 text-center max-w-2xl text-4xl lg:text-6xl mb-6 font-bold">
-            Memperkenalkan Gramatika Web!
+            Memperkenalkan Gramatika
           </h1>
           <p className="text-base font-normal text-center max-w-md">
             Asisten menulis Bahasa Indonesia baku dan KBBI di peramban (browser)
             dan aplikasi ponsel.
           </p>
         </div>
-        <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-6">
+        <div className="flex lg:flex-row flex-col lg:space-x-2 justify-center mb-2">
           <motion.a
             whileHover="hover"
-            href="/web"
-            className={buttonClass + ' bg-black text-white border-0'}
-            data-splitbee-event="Web"
-            target="_self"
-          >
-            Akses Gramatika Web
+            href="https://chrome.google.com/webstore/detail/gramatika-bahasa-indonesi/hhodeijkemcdbelkfdhglgmgpmgkfekk?hl=id"
 
+            className={buttonClass + ' bg-gray-200 text-black border-0'}
+            data-splitbee-event="Chrome"
+            target="_blank"
+          >
+            <img src="images/chrome_logo.png" className="mr-4" />
+            Chrome Extension
             <motion.div
               className="flex justify-center items-center ml-4"
               style={{ width: 40, height: 40 }}
               variants={variants}
             >
-
-              <img src="images/arrow_white.svg" />
+              <img src="images/arrow_black.svg" />
             </motion.div>
           </motion.a>
+
           <motion.a
             whileHover="hover"
             href="https://www.figma.com/community/plugin/1013364535408157858"
@@ -89,6 +90,7 @@ export default function Index() {
             data-splitbee-event="Figma"
             target="_self"
           >
+            <img src="images/figmalogo.png" className="mr-4" />
             Figma Plugin
 
             <motion.div
@@ -102,37 +104,23 @@ export default function Index() {
           </motion.a>
         </div>
 
-        <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-20">
+        <div className="flex lg:flex-row flex-col lg:space-x-2 justify-center mb-20">
           <motion.a
             whileHover="hover"
-            href="https://chrome.google.com/webstore/detail/gramatika-bahasa-indonesi/hhodeijkemcdbelkfdhglgmgpmgkfekk?hl=id"
+            href="/web"
             className={buttonClass}
-            data-splitbee-event="Chrome"
-            target="_blank"
+            data-splitbee-event="Web"
+            target="_self"
           >
             <img src="images/chrome_logo.png" className="mr-4" />
-            <motion.div
-              className="flex justify-center items-center ml-4"
-              style={{ width: 40, height: 40 }}
-              variants={variants}
-            >
-              <img src="images/arrow_white.svg" />
-            </motion.div>
-          </motion.a>
-          <motion.a
-            whileHover="hover"
-            href="https://addons.mozilla.org/en-GB/firefox/addon/gramatika/"
-            className={buttonClass}
-            data-splitbee-event="Firefox"
-            target="_blank"
-          >
-            <img src="images/firefox_logo.svg" className="mr-4" />
+            Gramatika Web
 
             <motion.div
               className="flex justify-center items-center ml-4"
               style={{ width: 40, height: 40 }}
               variants={variants}
             >
+
               <img src="images/arrow_white.svg" />
             </motion.div>
           </motion.a>
@@ -144,6 +132,7 @@ export default function Index() {
             target="_blank"
           >
             <img src="images/android_logo.png" className="mr-4" />
+            Android App
 
             <motion.div
               className="flex justify-center items-center ml-4"

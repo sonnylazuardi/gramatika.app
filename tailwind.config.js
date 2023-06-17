@@ -1,5 +1,8 @@
 module.exports = {
   content: ["./app/**/*.{ts,tsx}"],
+  daisyui: {
+    themes: ["forest"],
+  },
   theme: {
     fontFamily: {
       sans: ["GeneralSans", "ui-sans-serif", "system-ui"],
