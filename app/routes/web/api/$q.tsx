@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 export async function loader({ params }: { params: any }) {
   return fetch(`https://katla.vercel.app/api/define/${params.q}`, {
     headers: {
-      Authorization: "token CGZ12sbk3NP2",
+      Authorization: `token ${process.env.WORD_TOKEN}`,
     },
   })
     .then((res) => res.json())
