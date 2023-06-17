@@ -63,9 +63,7 @@ export default function Index() {
             dan aplikasi ponsel.
           </p>
         </div>
-
         <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-6">
-
           <motion.a
             whileHover="hover"
             href="/web"
