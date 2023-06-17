@@ -113,7 +113,6 @@ export default function Index() {
             target="_blank"
           >
             <img src="images/chrome_logo.png" className="mr-4" />
-
             <motion.div
               className="flex justify-center items-center ml-4"
               style={{ width: 40, height: 40 }}
