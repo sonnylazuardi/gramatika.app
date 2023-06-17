@@ -1,13 +1,12 @@
 import {
   Links,
-  LinksFunction,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "remix";
-import type { MetaFunction } from "remix";
+} from "@remix-run/react";
+import type { MetaFunction } from "@vercel/remix";
 import styles from "./tailwind.css";
 import webStyles from "~/styles/index.css";
 

@@ -1,4 +1,4 @@
-import { json } from "remix/server";
+import { json } from "@remix-run/node";
 
 export async function loader({ params }: { params: any }) {
   return fetch(`https://katla.vercel.app/api/define/${params.q}`, {
