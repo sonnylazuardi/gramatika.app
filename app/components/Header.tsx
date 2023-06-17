@@ -42,7 +42,7 @@ const Header = () => {
               />
             </div> */}
             <a
-              href="https://twitter.com/sonnylazuardi"
+              href="https://twitter.com/sonnylazuardi/status/1475428425493929985?s=20"
               className="text-sm lg:text-base flex flex-row items-end font-semibold"
             >
               <span className="sr-only md:not-sr-only md:inline-block">

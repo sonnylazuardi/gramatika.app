@@ -158,15 +158,6 @@ export default function Index() {
           </motion.a>
         </div>
 
-        <div className="mx-auto mb-10" style={{ width: 500, maxWidth: '100%' }}>
-          <TwitterTweetEmbed
-            tweetId="1535142798328209410"
-            options={{
-              theme: "dark",
-              conversation: "none"
-            }} />
-        </div>
-
         <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-6 relative">
           <div className="bg-base-200 h-96 flex items-center justify-center rounded-2xl mb-6 overflow-hidden">
             <motion.div style={{ y: animate2 }}>
