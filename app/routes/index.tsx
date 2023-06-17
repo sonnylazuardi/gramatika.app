@@ -56,7 +56,7 @@ export default function Index() {
       <div className="container mx-auto max-w-screen-lg text-5xl">
         <div className="flex flex-col justify-center items-center mb-12">
           <h1 className="mt-32 text-center max-w-2xl text-4xl lg:text-6xl mb-6 font-bold">
-            Memperkenalkan Gramatika!
+            Memperkenalkan Gramatika Web!
           </h1>
           <p className="text-base font-normal text-center max-w-md">
             Asisten menulis Bahasa Indonesia baku dan KBBI di peramban (browser)
@@ -65,6 +65,46 @@ export default function Index() {
         </div>
 
         <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-6">
+
+          <motion.a
+            whileHover="hover"
+            href="/web"
+            className={buttonClass + ' bg-black text-white border-0'}
+            data-splitbee-event="Web"
+            target="_self"
+          >
+            Akses Gramatika Web
+
+            <motion.div
+              className="flex justify-center items-center ml-4"
+              style={{ width: 40, height: 40 }}
+              variants={variants}
+            >
+
+              <img src="images/arrow_white.svg" />
+            </motion.div>
+          </motion.a>
+          <motion.a
+            whileHover="hover"
+            href="https://www.figma.com/community/plugin/1013364535408157858"
+            className={buttonClass}
+            data-splitbee-event="Figma"
+            target="_self"
+          >
+            Figma Plugin
+
+            <motion.div
+              className="flex justify-center items-center ml-4"
+              style={{ width: 40, height: 40 }}
+              variants={variants}
+            >
+
+              <img src="images/arrow_white.svg" />
+            </motion.div>
+          </motion.a>
+        </div>
+
+        <div className="flex lg:flex-row flex-col lg:space-x-6 justify-center mb-20">
           <motion.a
             whileHover="hover"
             href="https://chrome.google.com/webstore/detail/gramatika-bahasa-indonesi/hhodeijkemcdbelkfdhglgmgpmgkfekk?hl=id"
@@ -73,8 +113,6 @@ export default function Index() {
             target="_blank"
           >
             <img src="images/chrome_logo.png" className="mr-4" />
-            Pasang Pengaya di
-            <br /> Chrome Webstore{" "}
             <motion.div
               className="flex justify-center items-center ml-4"
               style={{ width: 40, height: 40 }}
@@ -91,8 +129,7 @@ export default function Index() {
             target="_blank"
           >
             <img src="images/firefox_logo.svg" className="mr-4" />
-            Pasang Pengaya
-            <br /> di Firefox{" "}
+
             <motion.div
               className="flex justify-center items-center ml-4"
               style={{ width: 40, height: 40 }}
@@ -109,8 +146,7 @@ export default function Index() {
             target="_blank"
           >
             <img src="images/android_logo.png" className="mr-4" />
-            Aplikasi Android
-            <br /> di Play Store{" "}
+
             <motion.div
               className="flex justify-center items-center ml-4"
               style={{ width: 40, height: 40 }}
@@ -187,7 +223,7 @@ export default function Index() {
         <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-6 relative">
           <div className="bg-base-200 h-96 flex flex-col p-4 rounded-2xl mb-6 overflow-hidden">
             <TwitterTweetEmbed
-              options={{ conversation: "none" }}
+              options={{ conversation: "none", theme: 'dark' }}
               tweetId={"1470075100758102024"}
             />
           </div>

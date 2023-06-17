@@ -5,25 +5,32 @@
   "license": "",
   "scripts": {
     "build": "npm run build:css && remix build",
-    "build:css": "tailwindcss -o ./app/tailwind.css",
-    "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
+    "build:css": "tailwindcss -m -o ./app/tailwind.css",
+    "dev": "concurrently \"npm run dev:css\" \"PORT=8080 remix dev\"",
     "dev:css": "tailwindcss -o ./app/tailwind.css --watch",
     "postinstall": "remix setup node"
   },
   "dependencies": {
-    "@remix-run/react": "^1.1.1",
-    "@remix-run/serve": "^1.1.1",
+    "@nearform/lyra": "^0.0.3",
+    "@remix-run/node": "^1.17.1",
+    "@remix-run/react": "^1.17.1",
+    "@remix-run/serve": "^1.17.1",
     "@remix-run/vercel": "^1.1.1",
     "@splitbee/web": "^0.3.0",
+    "@vercel/remix": "^1.17.0",
+    "akarata": "^0.2.1",
     "daisyui": "^1.20.1",
     "framer-motion": "^5.6.0",
+    "fuse.js": "^6.6.2",
     "react": "^17.0.2",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^17.0.2",
     "react-twitter-embed": "^3.0.3",
-    "remix": "^1.1.1"
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "use-editable": "^2.3.3"
   },
   "devDependencies": {
-    "@remix-run/dev": "^1.1.1",
+    "@remix-run/dev": "^1.17.1",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "concurrently": "^6.5.1",

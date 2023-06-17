@@ -13,7 +13,7 @@ const Header = () => {
             Gramatika
           </a>
           <div className="flex flex-row space-x-4">
-            <div className="flex flex-row">
+            {/* <div className="flex flex-row">
               <div className="form-control">
                 <label className="sr-only hidden" htmlFor="color-toggle">
                   Ubah mode warna
@@ -40,9 +40,9 @@ const Header = () => {
                 className="ml-1"
                 role="presentation"
               />
-            </div>
+            </div> */}
             <a
-              href="https://twitter.com/sonnylazuardi"
+              href="https://twitter.com/sonnylazuardi/status/1475428425493929985?s=20"
               className="text-sm lg:text-base flex flex-row items-end font-semibold"
             >
               <span className="sr-only md:not-sr-only md:inline-block">

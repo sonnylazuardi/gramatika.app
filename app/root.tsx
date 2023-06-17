@@ -1,26 +1,32 @@
 import {
   Links,
-  LinksFunction,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "remix";
-import type { MetaFunction } from "remix";
+} from "@remix-run/react";
+import type { MetaFunction } from "@vercel/remix";
 import styles from "./tailwind.css";
+import webStyles from "~/styles/index.css";
 
 export const meta: MetaFunction = () => {
-  return { title: "Gramatika - Asisten Bahasa Indonesia dengan ejaan baku" };
+  return {
+    title: "Gramatika - Asisten Bahasa Indonesia dengan ejaan baku",
+    description: "Gramatika - Asisten Bahasa Indonesia dengan ejaan baku di web, aplikasi dan ekstensi peramban",
+    "twitter:card": "summary_large_image",
+    "og:description": "Gramatika - Asisten Bahasa Indonesia dengan ejaan baku di web, aplikasi dan ekstensi peramban",
+    "og:image": "gramatikaweb.png",
+  };
 };
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [{ rel: "stylesheet", href: styles }, { rel: 'stylesheet', href: webStyles }];
 }
 
 export default function App() {
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
